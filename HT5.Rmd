@@ -14,50 +14,69 @@ library(tree)
 library(randomForest)
 library(ggplot2)
 library(tidyr)
+library(e1071)
+library(caret)
+
 
 datos <- read.csv("train.csv")
 
 datos <- datos %>% mutate_at(c('MSZoning', 'Street', 'Alley', 'LotShape', 'LandContour', 'Utilities'
-                               , 'LotConfig', 'LandSlope', 'Condition2', 'RoofMatl', 'Exterior2nd', 'Electrical'), as.factor)
+                               , 'LotConfig', 'LandSlope', 'Condition2', 'RoofMatl', 'Exterior2nd', 'Electrical'),as.factor)
+```
 
+
+##Pregunta 1. Particion de los datos en dos conjuntos
+
+Como los datos están balanceados se hizo una partición aleatoria utilizando el 70% de los datos para entrenamiento y el 30% de los datos para prueba.
+
+```{r, echo = FALSE}
 porcentaje<-0.7
 set.seed(123)
 corte <- sample(nrow(datos),nrow(datos)*porcentaje)
 training1<-datos[corte,]
 test1<-datos[-corte,]
 
-
-```
-
-```{r, echo = FALSE}
 datos2 <- dplyr::select_if(datos, is.numeric)
 datos2 <- na.omit(datos2)
 datosc <- scale(datos2)
-cor(datosc)
-corte <- sample(nrow(datos),nrow(datos)*porcentaje)
-training<-datos[corte,]
-test<-datos[-corte,]
-```
-
-
-##Pregunta 1. Particion de los datos en dos conjuntos
-
-Como los datos están balanceados se hizo una partición aleatoria utilizando el 70% de los datos para entrenamiento y el 30% de los datos para prueba.  
-```{r}
-porcentaje<-0.7
-set.seed(123)
 corte <- sample(nrow(datosc),nrow(datosc)*porcentaje)
-training<-datos[corte,]
-test<-datos[-corte,]
+training<-datosc[corte,]
+test<-datosc[-corte,]
+test1$clasification <- ifelse(test1$SalePrice > 214000, "Caras", ifelse(test1$SalePrice>163000, "Intemedia", "Economicas"))
 
 ```
 
-###Conjunto de entrenamiento (cantidad de muestras: r nrow(train)):  
-```{r echo=FALSE}
-head(training)
-```
-
-###Conjunto de Prueba (cantidad de muestras: `r nrow(test)`):  
+  
+##Pregunta 2 y 3. Hacer un modelo de Naive Bayes y de clasficación
 ```{r}
-head(test)
+training1$clasification <- ifelse(training1$SalePrice > 214000, "Caras", ifelse(training1$SalePrice>163000, "Intemedia", "Economicas"))
+modelo1<-naiveBayes(training1$clasification~., data=training1)
+modelo1
 ```
+
+##Pregunta 4 y 7. Eficiencia del algoritmo y matriz de confusión
+```{r}
+
+predBayes<-predict(modelo1, test1)
+prediction1 <- predict(modelo1, test1)
+prediction1<-as.factor(prediction1)
+cm<-caret::confusionMatrix(prediction1,as.factor(test1$clasification))
+cm
+```
+
+##Pregunta 5. Analisis de resultados del modelo de clasificación
+
+##Pregunta 6. Compare los resultados
+
+##Pregunta 7. Analisis de la matriz de confusión
+
+##Pregunta 8. Analice el modelo. ¿Cree que pueda estar sobre ajustado?
+
+##Pregunta 9. Modelo de validación cruzada
+```{r}
+ct<-trainControl(method = "cv",number=10, verboseIter=T)
+modeloCaret<-train(training1$clasification~.,data=training1,method="nb",trControl = ct)
+prediccionCaret<-predict(modeloCaret,newdata = test1)
+caret::confusionMatrix(prediccionCaret,test1$SalePrice)
+```
+

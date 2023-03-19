@@ -80,3 +80,4 @@ prediccionCaret<-predict(modeloCaret,newdata = test1)
 caret::confusionMatrix(prediccionCaret,test1$SalePrice)
 ```
 
+##Pregunta 10. Compare la eficiencia del algoritmo con el resultado obtenido con el árbol de decisión (el de clasificación) y el modelo de random forest que hizo en la hoja pasada. ¿Cuál es mejor para predecir? ¿Cuál se demoró más en procesar?

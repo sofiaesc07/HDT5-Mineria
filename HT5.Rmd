@@ -19,7 +19,6 @@ library(caret)
 
 
 datos <- read.csv("train.csv")
-
 datos <- datos %>% mutate_at(c('MSZoning', 'Street', 'Alley', 'LotShape', 'LandContour', 'Utilities'
                                , 'LotConfig', 'LandSlope', 'Condition2', 'RoofMatl', 'Exterior2nd', 'Electrical'),as.factor)
 ```
@@ -73,9 +72,10 @@ cm
 ##Pregunta 8. Analice el modelo. ¿Cree que pueda estar sobre ajustado?
 
 ##Pregunta 9. Modelo de validación cruzada
+
 ```{r}
-ct<-trainControl(method = "cv",number=10, verboseIter=T)
-modeloCaret<-train(training1$clasification~.,data=training1,method="nb",trControl = ct)
+ct<-trainControl(method = "cv",number=10,verboseIter=T)
+modeloCaret<-train(clasification~.,data=training1,method="nb",trControl = ct)
 prediccionCaret<-predict(modeloCaret,newdata = test1)
 caret::confusionMatrix(prediccionCaret,test1$SalePrice)
 ```

@@ -49,6 +49,7 @@ test1$clasification <- ifelse(test1$SalePrice > 214000, "Caras", ifelse(test1$Sa
 ##Pregunta 2 y 3. Hacer un modelo de Naive Bayes y de clasficación
 ```{r}
 training1$clasification <- ifelse(training1$SalePrice > 214000, "Caras", ifelse(training1$SalePrice>163000, "Intemedia", "Economicas"))
+table(training1$clasification)
 modelo1<-naiveBayes(training1$clasification~., data=training1)
 modelo1
 ```
@@ -65,11 +66,17 @@ cm
 
 ##Pregunta 5. Analisis de resultados del modelo de clasificación
 
-##Pregunta 6. Compare los resultados
+Con esto puede observarse que las probabilidades a priori obtenidas son: caras 0.2468168%, economicas 0.5073457% e intermedias 0.2458374%. Es decir, la mayoría de casas se encuentra en un rango de precio de venta económico, seguido por las casas con un precio de venta caras y por último se encuentran aquellas con un precio de venta intermedio.
+
+##Pregunta 6. Compare los resultados con el modelo de regresión lineal y el árbol de regresión que hizo en las hojas pasadas. ¿Cuál funcionó mejor?
 
 ##Pregunta 7. Analisis de la matriz de confusión
 
+Dentro de la matriz de confusión realizada con la predicción y el conjunto de prueba, se observa que la precisión del modelo fue del 78.36% lo cual indica que es bastante acertado. El modelo presenta una exactitud balanceada arriba de 80% para todas las casas lo cual infdica que es aceptable para la clasificación, de igual forma sucede con la sensibilidad y especificidad, estas indican que el modelo es acertado debido a sus porcentajes. 
+
 ##Pregunta 8. Analice el modelo. ¿Cree que pueda estar sobre ajustado?
+
+Debido al porcentaje de exactitud balanceado se podria llegar a pensar que si ya que es bastante alto, esto puede comprobarse por medio del un modelo de validación cruzada tal y como se observa a continuación. 
 
 ##Pregunta 9. Modelo de validación cruzada
 

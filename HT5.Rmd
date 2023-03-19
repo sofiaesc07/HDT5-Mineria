@@ -82,7 +82,7 @@ Debido al porcentaje de exactitud balanceado se podria llegar a pensar que si ya
 
 ```{r}
 ct<-trainControl(method = "cv",number=10,verboseIter=T)
-modeloCaret<-train(clasification~.,data=training1,method="nb",trControl = ct)
+modeloCaret<-train(training1$clasification~.,data=training1,method="nb",trControl = ct)
 prediccionCaret<-predict(modeloCaret,newdata = test1)
 caret::confusionMatrix(prediccionCaret,test1$SalePrice)
 ```

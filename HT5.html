@@ -402,12 +402,616 @@ table(training1$clasification)</code></pre>
 ##      Caras Economicas  Intemedia 
 ##        252        518        251</code></pre>
 <pre class="r"><code>modelo1&lt;-naiveBayes(training1$clasification~., data=training1[,-82])
-#modelo1</code></pre>
+modelo1</code></pre>
+<pre><code>## 
+## Naive Bayes Classifier for Discrete Predictors
+## 
+## Call:
+## naiveBayes.default(x = X, y = Y, laplace = laplace)
+## 
+## A-priori probabilities:
+## Y
+##      Caras Economicas  Intemedia 
+##  0.2468168  0.5073457  0.2458374 
+## 
+## Conditional probabilities:
+##             Id
+## Y                [,1]     [,2]
+##   Caras      717.2262 417.8248
+##   Economicas 732.1216 427.5883
+##   Intemedia  738.9044 410.0205
+## 
+##             MSSubClass
+## Y                [,1]     [,2]
+##   Caras      50.00000 30.33019
+##   Economicas 56.60232 47.24458
+##   Intemedia  60.81673 38.07401
+## 
+##             MSZoning
+## Y                C (all)          FV          RH          RL          RM
+##   Caras      0.000000000 0.075396825 0.000000000 0.900793651 0.023809524
+##   Economicas 0.011583012 0.009652510 0.023166023 0.710424710 0.245173745
+##   Intemedia  0.000000000 0.079681275 0.003984064 0.884462151 0.031872510
+## 
+##             LotFrontage
+## Y                [,1]     [,2]
+##   Caras      81.96040 22.65595
+##   Economicas 64.38851 22.42609
+##   Intemedia  72.50515 22.30413
+## 
+##             LotArea
+## Y                 [,1]      [,2]
+##   Caras      13894.151 14980.708
+##   Economicas  8806.869  4932.838
+##   Intemedia  10292.219  5072.627
+## 
+##             Street
+## Y                   Grvl        Pave
+##   Caras      0.003968254 0.996031746
+##   Economicas 0.003861004 0.996138996
+##   Intemedia  0.000000000 1.000000000
+## 
+##             Alley
+## Y                 Grvl      Pave
+##   Caras      0.3333333 0.6666667
+##   Economicas 0.7435897 0.2564103
+##   Intemedia  0.1875000 0.8125000
+## 
+##             LotShape
+## Y                    IR1         IR2         IR3         Reg
+##   Caras      0.484126984 0.051587302 0.011904762 0.452380952
+##   Economicas 0.220077220 0.009652510 0.003861004 0.766409266
+##   Intemedia  0.430278884 0.035856574 0.003984064 0.529880478
+## 
+##             LandContour
+## Y                   Bnk        HLS        Low        Lvl
+##   Caras      0.01587302 0.07936508 0.04365079 0.86111111
+##   Economicas 0.05791506 0.02316602 0.02316602 0.89575290
+##   Intemedia  0.03984064 0.03187251 0.02390438 0.90438247
+## 
+##             Utilities
+## Y                 AllPub      NoSeWa
+##   Caras      1.000000000 0.000000000
+##   Economicas 0.998069498 0.001930502
+##   Intemedia  1.000000000 0.000000000
+## 
+##             LotConfig
+## Y                 Corner     CulDSac         FR2         FR3      Inside
+##   Caras      0.182539683 0.111111111 0.035714286 0.000000000 0.670634921
+##   Economicas 0.183397683 0.027027027 0.032818533 0.000000000 0.756756757
+##   Intemedia  0.159362550 0.071713147 0.051792829 0.007968127 0.709163347
+## 
+##             LandSlope
+## Y                    Gtl         Mod         Sev
+##   Caras      0.912698413 0.075396825 0.011904762
+##   Economicas 0.957528958 0.034749035 0.007722008
+##   Intemedia  0.944223108 0.047808765 0.007968127
+## 
+##             Neighborhood
+## Y                Blmngtn     Blueste      BrDale     BrkSide     ClearCr
+##   Caras      0.015873016 0.000000000 0.000000000 0.003968254 0.023809524
+##   Economicas 0.003861004 0.001930502 0.019305019 0.055984556 0.007722008
+##   Intemedia  0.031872510 0.000000000 0.000000000 0.007968127 0.039840637
+##             Neighborhood
+## Y                CollgCr     Crawfor     Edwards     Gilbert      IDOTRR
+##   Caras      0.119047619 0.063492063 0.011904762 0.051587302 0.000000000
+##   Economicas 0.061776062 0.021235521 0.123552124 0.009652510 0.042471042
+##   Intemedia  0.163346614 0.035856574 0.027888446 0.143426295 0.003984064
+##             Neighborhood
+## Y                MeadowV     Mitchel       NAmes     NoRidge     NPkVill
+##   Caras      0.000000000 0.007936508 0.019841270 0.111111111 0.000000000
+##   Economicas 0.019305019 0.046332046 0.227799228 0.000000000 0.013513514
+##   Intemedia  0.000000000 0.047808765 0.107569721 0.003984064 0.000000000
+##             Neighborhood
+## Y                NridgHt      NWAmes     OldTown      Sawyer     SawyerW
+##   Caras      0.186507937 0.043650794 0.015873016 0.000000000 0.051587302
+##   Economicas 0.001930502 0.027027027 0.133204633 0.104247104 0.032818533
+##   Intemedia  0.035856574 0.095617530 0.007968127 0.031872510 0.059760956
+##             Neighborhood
+## Y                Somerst     StoneBr       SWISU      Timber     Veenker
+##   Caras      0.130952381 0.051587302 0.000000000 0.075396825 0.015873016
+##   Economicas 0.011583012 0.000000000 0.028957529 0.003861004 0.001930502
+##   Intemedia  0.083665339 0.019920319 0.003984064 0.031872510 0.015936255
+## 
+##             Condition1
+## Y                 Artery       Feedr        Norm        PosA        PosN
+##   Caras      0.007936508 0.007936508 0.920634921 0.011904762 0.023809524
+##   Economicas 0.042471042 0.086872587 0.832046332 0.000000000 0.005791506
+##   Intemedia  0.015936255 0.035856574 0.880478088 0.011952191 0.023904382
+##             Condition1
+## Y                   RRAe        RRAn        RRNe        RRNn
+##   Caras      0.000000000 0.019841270 0.000000000 0.007936508
+##   Economicas 0.019305019 0.013513514 0.000000000 0.000000000
+##   Intemedia  0.003984064 0.015936255 0.007968127 0.003984064
+## 
+##             Condition2
+## Y                 Artery       Feedr        Norm        PosA        PosN
+##   Caras      0.000000000 0.000000000 0.992063492 0.003968254 0.003968254
+##   Economicas 0.001930502 0.005791506 0.988416988 0.000000000 0.000000000
+##   Intemedia  0.000000000 0.000000000 0.996015936 0.000000000 0.003984064
+##             Condition2
+## Y                   RRAe        RRAn        RRNn
+##   Caras      0.000000000 0.000000000 0.000000000
+##   Economicas 0.000000000 0.001930502 0.001930502
+##   Intemedia  0.000000000 0.000000000 0.000000000
+## 
+##             BldgType
+## Y                   1Fam      2fmCon      Duplex       Twnhs      TwnhsE
+##   Caras      0.916666667 0.003968254 0.000000000 0.003968254 0.075396825
+##   Economicas 0.795366795 0.034749035 0.065637066 0.028957529 0.075289575
+##   Intemedia  0.836653386 0.003984064 0.011952191 0.019920319 0.127490040
+## 
+##             HouseStyle
+## Y                 1.5Fin      1.5Unf      1Story      2.5Fin      2.5Unf
+##   Caras      0.031746032 0.000000000 0.480158730 0.007936508 0.007936508
+##   Economicas 0.166023166 0.019305019 0.565637066 0.003861004 0.007722008
+##   Intemedia  0.039840637 0.000000000 0.446215139 0.003984064 0.000000000
+##             HouseStyle
+## Y                 2Story      SFoyer        SLvl
+##   Caras      0.464285714 0.000000000 0.007936508
+##   Economicas 0.160231660 0.036679537 0.040540541
+##   Intemedia  0.414342629 0.015936255 0.079681275
+## 
+##             OverallQual
+## Y                [,1]      [,2]
+##   Caras      7.698413 0.9961667
+##   Economicas 5.193050 0.9316018
+##   Intemedia  6.410359 0.8215426
+## 
+##             OverallCond
+## Y                [,1]      [,2]
+##   Caras      5.365079 0.9155859
+##   Economicas 5.689189 1.2321919
+##   Intemedia  5.414343 0.8784267
+## 
+##             YearBuilt
+## Y                [,1]     [,2]
+##   Caras      1993.532 21.99101
+##   Economicas 1955.131 25.29918
+##   Intemedia  1985.287 22.85409
+## 
+##             YearRemodAdd
+## Y                [,1]     [,2]
+##   Caras      1999.679 10.61401
+##   Economicas 1974.205 20.47720
+##   Intemedia  1992.287 15.28520
+## 
+##             RoofStyle
+## Y                   Flat       Gable     Gambrel         Hip     Mansard
+##   Caras      0.011904762 0.630952381 0.007936508 0.345238095 0.000000000
+##   Economicas 0.005791506 0.814671815 0.009652510 0.167953668 0.001930502
+##   Intemedia  0.011952191 0.860557769 0.003984064 0.119521912 0.003984064
+##             RoofStyle
+## Y                   Shed
+##   Caras      0.003968254
+##   Economicas 0.000000000
+##   Intemedia  0.000000000
+## 
+##             RoofMatl
+## Y                ClyTile     CompShg     Membran       Metal        Roll
+##   Caras      0.000000000 0.964285714 0.000000000 0.000000000 0.000000000
+##   Economicas 0.001930502 0.990347490 0.000000000 0.000000000 0.001930502
+##   Intemedia  0.000000000 0.980079681 0.000000000 0.003984064 0.000000000
+##             RoofMatl
+## Y                Tar&amp;Grv     WdShake     WdShngl
+##   Caras      0.011904762 0.007936508 0.015873016
+##   Economicas 0.005791506 0.000000000 0.000000000
+##   Intemedia  0.007968127 0.003984064 0.003984064
+## 
+##             Exterior1st
+## Y                AsbShng     AsphShn     BrkComm     BrkFace      CBlock
+##   Caras      0.000000000 0.000000000 0.000000000 0.047619048 0.000000000
+##   Economicas 0.027027027 0.001930502 0.003861004 0.030888031 0.001930502
+##   Intemedia  0.003984064 0.000000000 0.000000000 0.019920319 0.000000000
+##             Exterior1st
+## Y                CemntBd     HdBoard     ImStucc     MetalSd     Plywood
+##   Caras      0.091269841 0.071428571 0.003968254 0.075396825 0.063492063
+##   Economicas 0.025096525 0.181467181 0.000000000 0.208494208 0.077220077
+##   Intemedia  0.019920319 0.171314741 0.000000000 0.087649402 0.095617530
+##             Exterior1st
+## Y                  Stone      Stucco     VinylSd     Wd Sdng     WdShing
+##   Caras      0.003968254 0.011904762 0.583333333 0.043650794 0.003968254
+##   Economicas 0.000000000 0.025096525 0.185328185 0.206563707 0.025096525
+##   Intemedia  0.000000000 0.007968127 0.482071713 0.099601594 0.011952191
+## 
+##             Exterior2nd
+## Y                AsbShng     AsphShn     Brk Cmn     BrkFace      CBlock
+##   Caras      0.000000000 0.000000000 0.000000000 0.023809524 0.000000000
+##   Economicas 0.021235521 0.001930502 0.011583012 0.011583012 0.001930502
+##   Intemedia  0.003984064 0.000000000 0.000000000 0.003984064 0.000000000
+##             Exterior2nd
+## Y                CmentBd     HdBoard     ImStucc     MetalSd       Other
+##   Caras      0.091269841 0.079365079 0.015873016 0.075396825 0.000000000
+##   Economicas 0.025096525 0.158301158 0.005791506 0.202702703 0.000000000
+##   Intemedia  0.015936255 0.171314741 0.007968127 0.079681275 0.000000000
+##             Exterior2nd
+## Y                Plywood       Stone      Stucco     VinylSd     Wd Sdng
+##   Caras      0.063492063 0.003968254 0.011904762 0.579365079 0.043650794
+##   Economicas 0.111969112 0.001930502 0.027027027 0.175675676 0.202702703
+##   Intemedia  0.107569721 0.007968127 0.007968127 0.470119522 0.099601594
+##             Exterior2nd
+## Y                Wd Shng
+##   Caras      0.011904762
+##   Economicas 0.040540541
+##   Intemedia  0.023904382
+## 
+##             MasVnrType
+## Y                BrkCmn    BrkFace       None      Stone
+##   Caras      0.00400000 0.43600000 0.31600000 0.24400000
+##   Economicas 0.01737452 0.19498069 0.76640927 0.02123552
+##   Intemedia  0.01219512 0.35365854 0.54878049 0.08536585
+## 
+##             MasVnrArea
+## Y                 [,1]     [,2]
+##   Caras      219.00000 247.7723
+##   Economicas  48.33591 111.6962
+##   Intemedia   88.20732 141.5925
+## 
+##             ExterQual
+## Y                     Ex          Fa          Gd          TA
+##   Caras      0.126984127 0.000000000 0.738095238 0.134920635
+##   Economicas 0.001930502 0.019305019 0.079150579 0.899613900
+##   Intemedia  0.015936255 0.000000000 0.490039841 0.494023904
+## 
+##             ExterCond
+## Y                     Ex          Fa          Gd          Po          TA
+##   Caras      0.003968254 0.000000000 0.067460317 0.000000000 0.928571429
+##   Economicas 0.001930502 0.038610039 0.121621622 0.001930502 0.835907336
+##   Intemedia  0.000000000 0.007968127 0.075697211 0.000000000 0.916334661
+## 
+##             Foundation
+## Y                 BrkTil      CBlock       PConc        Slab       Stone
+##   Caras      0.023809524 0.142857143 0.829365079 0.000000000 0.000000000
+##   Economicas 0.152509653 0.623552124 0.181467181 0.032818533 0.007722008
+##   Intemedia  0.039840637 0.334661355 0.621513944 0.000000000 0.000000000
+##             Foundation
+## Y                   Wood
+##   Caras      0.003968254
+##   Economicas 0.001930502
+##   Intemedia  0.003984064
+## 
+##             BsmtQual
+## Y                     Ex          Fa          Gd          TA
+##   Caras      0.277777778 0.000000000 0.623015873 0.099206349
+##   Economicas 0.008113590 0.044624746 0.208924949 0.738336714
+##   Intemedia  0.035856574 0.003984064 0.689243028 0.270916335
+## 
+##             BsmtCond
+## Y                     Fa          Gd          Po          TA
+##   Caras      0.000000000 0.067460317 0.000000000 0.932539683
+##   Economicas 0.048681542 0.028397566 0.002028398 0.920892495
+##   Intemedia  0.011952191 0.043824701 0.000000000 0.944223108
+## 
+##             BsmtExposure
+## Y                    Av         Gd         Mn         No
+##   Caras      0.22222222 0.21031746 0.10714286 0.46031746
+##   Economicas 0.11359026 0.03042596 0.06085193 0.79513185
+##   Intemedia  0.19600000 0.10000000 0.07600000 0.62800000
+## 
+##             BsmtFinType1
+## Y                   ALQ        BLQ        GLQ        LwQ        Rec        Unf
+##   Caras      0.07142857 0.04761905 0.58333333 0.01984127 0.01984127 0.25793651
+##   Economicas 0.19675456 0.15010142 0.12576065 0.07707911 0.14807302 0.30223124
+##   Intemedia  0.14741036 0.06374502 0.37848606 0.03984064 0.06772908 0.30278884
+## 
+##             BsmtFinSF1
+## Y                [,1]     [,2]
+##   Caras      677.4960 560.6630
+##   Economicas 358.8282 403.7909
+##   Intemedia  413.9602 414.0845
+## 
+##             BsmtFinType2
+## Y                    ALQ         BLQ         GLQ         LwQ         Rec
+##   Caras      0.015873016 0.007936508 0.019841270 0.019841270 0.007936508
+##   Economicas 0.012170385 0.040567951 0.008113590 0.036511156 0.052738337
+##   Intemedia  0.015936255 0.027888446 0.003984064 0.035856574 0.039840637
+##             BsmtFinType2
+## Y                    Unf
+##   Caras      0.928571429
+##   Economicas 0.849898580
+##   Intemedia  0.876494024
+## 
+##             BsmtFinSF2
+## Y                [,1]     [,2]
+##   Caras      38.56746 173.7952
+##   Economicas 52.98263 155.3125
+##   Intemedia  48.49402 165.0509
+## 
+##             BsmtUnfSF
+## Y                [,1]     [,2]
+##   Caras      717.5476 536.1807
+##   Economicas 464.5579 358.4114
+##   Intemedia  629.8287 437.1132
+## 
+##             TotalBsmtSF
+## Y                 [,1]     [,2]
+##   Caras      1433.6111 393.4280
+##   Economicas  876.3687 386.5980
+##   Intemedia  1092.2829 343.8456
+## 
+##             Heating
+## Y                  Floor        GasA        GasW        Grav        OthW
+##   Caras      0.000000000 0.996031746 0.003968254 0.000000000 0.000000000
+##   Economicas 0.001930502 0.957528958 0.019305019 0.011583012 0.003861004
+##   Intemedia  0.000000000 1.000000000 0.000000000 0.000000000 0.000000000
+##             Heating
+## Y                   Wall
+##   Caras      0.000000000
+##   Economicas 0.005791506
+##   Intemedia  0.000000000
+## 
+##             HeatingQC
+## Y                     Ex          Fa          Gd          Po          TA
+##   Caras      0.857142857 0.011904762 0.063492063 0.000000000 0.067460317
+##   Economicas 0.308880309 0.059845560 0.175675676 0.001930502 0.453667954
+##   Intemedia  0.613545817 0.023904382 0.175298805 0.000000000 0.187250996
+## 
+##             CentralAir
+## Y                      N           Y
+##   Caras      0.003968254 0.996031746
+##   Economicas 0.121621622 0.878378378
+##   Intemedia  0.000000000 1.000000000
+## 
+##             Electrical
+## Y                  FuseA       FuseF       FuseP         Mix       SBrkr
+##   Caras      0.003968254 0.000000000 0.000000000 0.000000000 0.996031746
+##   Economicas 0.111969112 0.032818533 0.005791506 0.000000000 0.849420849
+##   Intemedia  0.016000000 0.004000000 0.000000000 0.000000000 0.980000000
+## 
+##             X1stFlrSF
+## Y                [,1]     [,2]
+##   Caras      1492.865 365.1886
+##   Economicas 1007.037 305.7701
+##   Intemedia  1181.928 338.6200
+## 
+##             X2ndFlrSF
+## Y                [,1]     [,2]
+##   Caras      539.1587 557.3530
+##   Economicas 207.8436 315.1975
+##   Intemedia  394.8367 421.0569
+## 
+##             LowQualFinSF
+## Y                [,1]     [,2]
+##   Caras      2.269841 36.03261
+##   Economicas 9.384170 61.19330
+##   Intemedia  3.438247 38.67453
+## 
+##             GrLivArea
+## Y                [,1]     [,2]
+##   Caras      2034.294 489.5466
+##   Economicas 1224.264 398.9935
+##   Intemedia  1580.203 353.3527
+## 
+##             BsmtFullBath
+## Y                 [,1]      [,2]
+##   Caras      0.5753968 0.5188382
+##   Economicas 0.3745174 0.5116508
+##   Intemedia  0.4143426 0.5095424
+## 
+##             BsmtHalfBath
+## Y                  [,1]      [,2]
+##   Caras      0.02777778 0.1646626
+##   Economicas 0.05212355 0.2224910
+##   Intemedia  0.06772908 0.2671973
+## 
+##             FullBath
+## Y                [,1]      [,2]
+##   Caras      1.992063 0.3786331
+##   Economicas 1.233591 0.4457743
+##   Intemedia  1.808765 0.4682765
+## 
+##             HalfBath
+## Y                 [,1]      [,2]
+##   Caras      0.5396825 0.4994147
+##   Economicas 0.2258687 0.4410585
+##   Intemedia  0.5258964 0.5160685
+## 
+##             BedroomAbvGr
+## Y                [,1]      [,2]
+##   Caras      3.039683 0.8220157
+##   Economicas 2.754826 0.8480983
+##   Intemedia  2.884462 0.6742385
+## 
+##             KitchenAbvGr
+## Y                [,1]      [,2]
+##   Caras      1.000000 0.0000000
+##   Economicas 1.090734 0.2941582
+##   Intemedia  1.015936 0.1254792
+## 
+##             KitchenQual
+## Y                     Ex          Fa          Gd          TA
+##   Caras      0.257936508 0.000000000 0.670634921 0.071428571
+##   Economicas 0.011583012 0.048262548 0.166023166 0.774131274
+##   Intemedia  0.023904382 0.003984064 0.601593625 0.370517928
+## 
+##             TotRmsAbvGrd
+## Y                [,1]     [,2]
+##   Caras      7.757937 1.517802
+##   Economicas 5.866795 1.446539
+##   Intemedia  6.605578 1.239278
+## 
+##             Functional
+## Y                   Maj1        Maj2        Min1        Min2         Mod
+##   Caras      0.003968254 0.000000000 0.003968254 0.000000000 0.007936508
+##   Economicas 0.013513514 0.005791506 0.030888031 0.034749035 0.015444015
+##   Intemedia  0.007968127 0.000000000 0.023904382 0.023904382 0.003984064
+##             Functional
+## Y                    Sev         Typ
+##   Caras      0.000000000 0.984126984
+##   Economicas 0.001930502 0.897683398
+##   Intemedia  0.000000000 0.940239044
+## 
+##             Fireplaces
+## Y                 [,1]      [,2]
+##   Caras      1.0714286 0.5528423
+##   Economicas 0.3378378 0.5664344
+##   Intemedia  0.7370518 0.6407665
+## 
+##             FireplaceQu
+## Y                     Ex          Fa          Gd          Po          TA
+##   Caras      0.075892857 0.013392857 0.540178571 0.000000000 0.370535714
+##   Economicas 0.006622517 0.066225166 0.463576159 0.086092715 0.377483444
+##   Intemedia  0.000000000 0.043750000 0.412500000 0.012500000 0.531250000
+## 
+##             GarageType
+## Y                 2Types      Attchd     Basment     BuiltIn     CarPort
+##   Caras      0.000000000 0.801587302 0.007936508 0.146825397 0.000000000
+##   Economicas 0.006507592 0.449023861 0.021691974 0.013015184 0.008676790
+##   Intemedia  0.008000000 0.820000000 0.012000000 0.064000000 0.004000000
+##             GarageType
+## Y                 Detchd
+##   Caras      0.043650794
+##   Economicas 0.501084599
+##   Intemedia  0.092000000
+## 
+##             GarageYrBlt
+## Y                [,1]     [,2]
+##   Caras      1995.520 17.48111
+##   Economicas 1965.820 21.57878
+##   Intemedia  1987.516 19.94414
+## 
+##             GarageFinish
+## Y                  Fin       RFn       Unf
+##   Caras      0.5317460 0.3492063 0.1190476
+##   Economicas 0.0802603 0.1952278 0.7245119
+##   Intemedia  0.3160000 0.4640000 0.2200000
+## 
+##             GarageCars
+## Y                [,1]      [,2]
+##   Caras      2.428571 0.5345225
+##   Economicas 1.341699 0.6905263
+##   Intemedia  1.988048 0.3845212
+## 
+##             GarageArea
+## Y                [,1]     [,2]
+##   Caras      665.1190 180.8297
+##   Economicas 369.3938 196.2908
+##   Intemedia  501.0956 125.6643
+## 
+##             GarageQual
+## Y                     Ex          Fa          Gd          Po          TA
+##   Caras      0.003968254 0.003968254 0.015873016 0.000000000 0.976190476
+##   Economicas 0.004338395 0.060737527 0.004338395 0.004338395 0.926247289
+##   Intemedia  0.000000000 0.008000000 0.004000000 0.000000000 0.988000000
+## 
+##             GarageCond
+## Y                     Ex          Fa          Gd          Po          TA
+##   Caras      0.000000000 0.003968254 0.007936508 0.000000000 0.988095238
+##   Economicas 0.004338395 0.052060738 0.008676790 0.008676790 0.926247289
+##   Intemedia  0.000000000 0.004000000 0.004000000 0.000000000 0.992000000
+## 
+##             PavedDrive
+## Y                      N           P           Y
+##   Caras      0.000000000 0.003968254 0.996031746
+##   Economicas 0.100386100 0.036679537 0.862934363
+##   Intemedia  0.011952191 0.011952191 0.976095618
+## 
+##             WoodDeckSF
+## Y                 [,1]     [,2]
+##   Caras      147.79365 136.6184
+##   Economicas  60.66023 108.5630
+##   Intemedia  108.55777 121.7696
+## 
+##             OpenPorchSF
+## Y                [,1]     [,2]
+##   Caras      81.67460 77.23327
+##   Economicas 26.03668 52.69815
+##   Intemedia  57.52191 67.70101
+## 
+##             EnclosedPorch
+## Y                 [,1]     [,2]
+##   Caras       9.575397 45.88899
+##   Economicas 31.955598 68.54255
+##   Intemedia  10.370518 45.10967
+## 
+##             X3SsnPorch
+## Y                [,1]     [,2]
+##   Caras      5.087302 33.55581
+##   Economicas 1.694981 19.97154
+##   Intemedia  7.115538 47.42411
+## 
+##             ScreenPorch
+## Y                [,1]     [,2]
+##   Caras      20.34921 70.40388
+##   Economicas 10.18726 45.39755
+##   Intemedia  20.84064 59.50642
+## 
+##             PoolArea
+## Y                 [,1]     [,2]
+##   Caras      7.1904762 66.47052
+##   Economicas 0.9266409 21.08999
+##   Intemedia  0.0000000  0.00000
+## 
+##             PoolQC
+## Y                   Ex        Fa        Gd
+##   Caras      0.3333333 0.3333333 0.3333333
+##   Economicas 0.0000000 0.0000000 1.0000000
+##   Intemedia                               
+## 
+##             Fence
+## Y                 GdPrv       GdWo      MnPrv       MnWw
+##   Caras      0.33333333 0.14285714 0.52380952 0.00000000
+##   Economicas 0.12857143 0.22142857 0.59285714 0.05714286
+##   Intemedia  0.38709677 0.16129032 0.41935484 0.03225806
+## 
+##             MiscFeature
+## Y                  Gar2       Othr       Shed       TenC
+##   Caras      0.00000000 0.00000000 0.80000000 0.20000000
+##   Economicas 0.03333333 0.06666667 0.90000000 0.00000000
+##   Intemedia  0.00000000 0.00000000 1.00000000 0.00000000
+## 
+##             MiscVal
+## Y                [,1]     [,2]
+##   Caras      25.19841 198.6257
+##   Economicas 69.23552 715.3684
+##   Intemedia  18.04781 141.4375
+## 
+##             MoSold
+## Y                [,1]     [,2]
+##   Caras      6.563492 2.917173
+##   Economicas 6.158301 2.645027
+##   Intemedia  6.282869 2.503531
+## 
+##             YrSold
+## Y                [,1]     [,2]
+##   Caras      2007.762 1.350394
+##   Economicas 2007.880 1.332947
+##   Intemedia  2007.757 1.326914
+## 
+##             SaleType
+## Y                    COD         Con       ConLD       ConLI       ConLw
+##   Caras      0.003968254 0.003968254 0.003968254 0.003968254 0.000000000
+##   Economicas 0.048262548 0.000000000 0.009652510 0.003861004 0.003861004
+##   Intemedia  0.011952191 0.000000000 0.000000000 0.003984064 0.003984064
+##             SaleType
+## Y                    CWD         New         Oth          WD
+##   Caras      0.007936508 0.210317460 0.000000000 0.765873016
+##   Economicas 0.001930502 0.015444015 0.003861004 0.913127413
+##   Intemedia  0.000000000 0.115537849 0.000000000 0.864541833
+## 
+##             SaleCondition
+## Y                Abnorml     AdjLand      Alloca      Family      Normal
+##   Caras      0.023809524 0.000000000 0.007936508 0.011904762 0.742063492
+##   Economicas 0.098455598 0.005791506 0.011583012 0.017374517 0.847490347
+##   Intemedia  0.043824701 0.000000000 0.007968127 0.011952191 0.820717131
+##             SaleCondition
+## Y                Partial
+##   Caras      0.214285714
+##   Economicas 0.019305019
+##   Intemedia  0.115537849
+## 
+##             SalePrice
+## Y                [,1]     [,2]
+##   Caras      289188.1 79305.20
+##   Economicas 125928.0 24311.01
+##   Intemedia  184988.3 13873.14</code></pre>
 </div>
-<div id="pregunta-4-y-7.-eficiencia-del-algoritmo-y-matriz-de-confusión" class="section level2">
-<h2>Pregunta 4 y 7. Eficiencia del algoritmo y matriz de confusión</h2>
+<div id="pregunta-2respuesta-y-4.-eficiencia-del-algoritmo-y-matriz-de-confusión" class="section level2">
+<h2>Pregunta 2(respuesta) y 4. Eficiencia del algoritmo y matriz de
+confusión</h2>
 <p>A continuación se muestra la tabla con la prediccion obtenida en la
-hoja de trabajo anterior:</p>
+hoja de trabajo anterior y leugo la prediccion obtenida con el modelo
+Naive Bayes:</p>
 <pre class="r"><code>v2&lt;-c(112, 225, 102)
 tab1 &lt;- matrix(v2, ncol=3, byrow=TRUE)
 colnames(tab1) &lt;- c(&#39;Caras&#39;,&#39;Economicas&#39;,&#39;Intermedia&#39;)
@@ -465,6 +1069,14 @@ tab1</code></pre>
 ## Prediccion hdt4    75        184        180
 ## Prediccion hdt3   112        225        102
 ## diferencia         37         41         78</code></pre>
+<p>Podemos observar en la tabla anterior, donde se muestran los datos
+obtenidos en comparacion con el modelo propuesto en la hoja anterior,
+que la diferencia entre ambas prediccion no coincidieron del todo. En
+este nuevo modelo, se predijeron correctamente 73 casas caras, 169 casas
+economicas y 102 casas intermedias, y no se predijeron correctamente 37
+casas que debieron ir a caras, 45 que debieron ir a economicas y 13 que
+debieron ir a intermedias, ya que los valores correctos eran 110 en
+caras, 214 en economicas y 115 en intermedias.</p>
 </div>
 <div id="pregunta-5.-analisis-de-resultados-del-modelo-de-clasificación" class="section level2">
 <h2>Pregunta 5. Analisis de resultados del modelo de clasificación</h2>
@@ -478,6 +1090,9 @@ por último se encuentran aquellas con un precio de venta intermedio.</p>
 <h2>Pregunta 6. Compare los resultados con el modelo de regresión lineal
 y el árbol de regresión que hizo en las hojas pasadas. ¿Cuál funcionó
 mejor?</h2>
+<p>Se puede notar que el modelo de regresión lineal dió mejores
+resultados. Aunque este es categórico el modelo de regresión mostró más
+precisión.</p>
 </div>
 <div id="pregunta-7.-analisis-de-la-matriz-de-confusión" class="section level2">
 <h2>Pregunta 7. Analisis de la matriz de confusión</h2>
@@ -488,8 +1103,10 @@ exactitud balanceada arriba de 80% para todas las casas lo cual infdica
 que es aceptable para la clasificación, de igual forma sucede con la
 sensibilidad y especificidad, estas indican que el modelo es acertado
 debido a sus porcentajes.</p>
-<p>##Pregunta 8. Analice el modelo. ¿Cree que pueda estar sobre
-ajustado?</p>
+</div>
+<div id="pregunta-8.-analice-el-modelo.-cree-que-pueda-estar-sobre-ajustado" class="section level2">
+<h2>Pregunta 8. Analice el modelo. ¿Cree que pueda estar sobre
+ajustado?</h2>
 <p>Debido al porcentaje de exactitud balanceado se podria llegar a
 pensar que si ya que es bastante alto, esto puede comprobarse por medio
 del un modelo de validación cruzada tal y como se observa a
@@ -576,6 +1193,10 @@ continuación.</p>
 obtenido con el árbol de decisión (el de clasificación) y el modelo de
 random forest que hizo en la hoja pasada. ¿Cuál es mejor para predecir?
 ¿Cuál se demoró más en procesar?</h2>
+<p>En realidad los modelos mostraron resultados similares. Aunque este
+modelo fue más rápido, se obtienen resultados más explicativos con el
+random forest debido a como se definen los modelos de árboles de
+decisión.</p>
 </div>
 
 

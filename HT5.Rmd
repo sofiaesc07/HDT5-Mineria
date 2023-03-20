@@ -96,6 +96,8 @@ Con esto puede observarse que las probabilidades a priori obtenidas son: caras 0
 
 ## Pregunta 6. Compare los resultados con el modelo de regresión lineal y el árbol de regresión que hizo en las hojas pasadas. ¿Cuál funcionó mejor?
 
+Se puede notar que el modelo de regresión lineal dió mejores resultados. Aunque este es categórico el modelo de regresión mostró más precisión.
+
 ## Pregunta 7. Analisis de la matriz de confusión
 
 Dentro de la matriz de confusión realizada con la predicción y el conjunto de prueba, se observa que la precisión del modelo fue del 78.36% lo cual indica que es bastante acertado. El modelo presenta una exactitud balanceada arriba de 80% para todas las casas lo cual infdica que es aceptable para la clasificación, de igual forma sucede con la sensibilidad y especificidad, estas indican que el modelo es acertado debido a sus porcentajes. 
@@ -132,4 +134,4 @@ cva
 ## Pregunta 10. Compare la eficiencia del algoritmo con el resultado obtenido con el árbol de decisión (el de clasificación) y el modelo de random forest que hizo en la hoja pasada. ¿Cuál es mejor para predecir? ¿Cuál se demoró más en procesar?
 
 
-
+En realidad los modelos mostraron resultados similares. Aunque este modelo fue más rápido, se obtienen resultados más explicativos con el random forest debido a como se definen los modelos de árboles de decisión.

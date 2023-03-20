@@ -24,7 +24,7 @@ datos <- datos %>% mutate_at(c('MSZoning', 'Street', 'Alley', 'LotShape', 'LandC
 ```
 
 
-##Pregunta 1. Particion de los datos en dos conjuntos
+## Pregunta 1. Particion de los datos en dos conjuntos
 
 Como los datos están balanceados se hizo una partición aleatoria utilizando el 70% de los datos para entrenamiento y el 30% de los datos para prueba.
 
@@ -46,31 +46,57 @@ test1$clasification <- ifelse(test1$SalePrice > 214000, "Caras", ifelse(test1$Sa
 ```
 
   
-##Pregunta 2 y 3. Hacer un modelo de Naive Bayes y de clasficación
+##  Pregunta 2 y 3. Hacer un modelo de Naive Bayes y de clasficación
 ```{r}
 training1$clasification <- ifelse(training1$SalePrice > 214000, "Caras", ifelse(training1$SalePrice>163000, "Intemedia", "Economicas"))
 table(training1$clasification)
-modelo1<-naiveBayes(training1$clasification~., data=training1)
+modelo1<-naiveBayes(training1$clasification~., data=training1[,-82])
 modelo1
 ```
 
-##Pregunta 4 y 7. Eficiencia del algoritmo y matriz de confusión
+## Pregunta 2(respuesta) y 4. Eficiencia del algoritmo y matriz de confusión
+A continuación se muestra la tabla con la prediccion obtenida en la hoja de trabajo anterior y leugo la prediccion obtenida con el modelo Naive Bayes:
+```{r}
+v2<-c(112, 225, 102)
+tab1 <- matrix(v2, ncol=3, byrow=TRUE)
+colnames(tab1) <- c('Caras','Economicas','Intermedia')
+tab1 <- as.table(tab1)
+tab1
+```
+
+
 ```{r}
 
 predBayes<-predict(modelo1, test1)
 prediction1 <- predict(modelo1, test1)
 prediction1<-as.factor(prediction1)
-cm<-caret::confusionMatrix(prediction1,as.factor(test1$clasification))
+tabla<-table(prediction1)
+tab <- as.numeric(tabla)
+cm<-caret::confusionMatrix(as.factor(test1$clasification),prediction1)
 cm
+v1<-c(cm$table[1,1],cm$table[1,2],cm$table[1,3],cm$table[2,1],cm$table[2,2],cm$table[2,3],cm$table[3,1],cm$table[3,2],cm$table[3,3])
 ```
 
-##Pregunta 5. Analisis de resultados del modelo de clasificación
+```{r}
+#V1<-C(tab[1],tab[2],tab[3])
+v2<-c(112, 225, 102)
+t<-abs(tab-v2)
+tab1 <- matrix(c(tab,v2,t), ncol=3, byrow=TRUE)
+colnames(tab1) <- c('Caras','Economicas','Intermedia')
+rownames(tab1) <- c('Prediccion hdt4','Prediccion hdt3','diferencia')
+tab1 <- as.table(tab1)
+tab1
+```
+Podemos observar en la tabla anterior, donde se muestran los datos obtenidos en comparacion con el modelo propuesto en la hoja anterior, que la diferencia entre ambas prediccion no coincidieron del todo.  En este nuevo modelo, se predijeron correctamente 73 casas caras, 169 casas economicas y 102 casas intermedias, y no se predijeron correctamente 37 casas que debieron ir a caras, 45 que debieron ir a economicas y 13 que debieron ir a intermedias, ya que los valores correctos eran 110 en caras, 214 en economicas y 115 en intermedias.
+
+
+## Pregunta 5. Analisis de resultados del modelo de clasificación
 
 Con esto puede observarse que las probabilidades a priori obtenidas son: caras 0.2468168%, economicas 0.5073457% e intermedias 0.2458374%. Es decir, la mayoría de casas se encuentra en un rango de precio de venta económico, seguido por las casas con un precio de venta caras y por último se encuentran aquellas con un precio de venta intermedio.
 
-##Pregunta 6. Compare los resultados con el modelo de regresión lineal y el árbol de regresión que hizo en las hojas pasadas. ¿Cuál funcionó mejor?
+## Pregunta 6. Compare los resultados con el modelo de regresión lineal y el árbol de regresión que hizo en las hojas pasadas. ¿Cuál funcionó mejor?
 
-##Pregunta 7. Analisis de la matriz de confusión
+## Pregunta 7. Analisis de la matriz de confusión
 
 Dentro de la matriz de confusión realizada con la predicción y el conjunto de prueba, se observa que la precisión del modelo fue del 78.36% lo cual indica que es bastante acertado. El modelo presenta una exactitud balanceada arriba de 80% para todas las casas lo cual infdica que es aceptable para la clasificación, de igual forma sucede con la sensibilidad y especificidad, estas indican que el modelo es acertado debido a sus porcentajes. 
 
@@ -78,13 +104,32 @@ Dentro de la matriz de confusión realizada con la predicción y el conjunto de 
 
 Debido al porcentaje de exactitud balanceado se podria llegar a pensar que si ya que es bastante alto, esto puede comprobarse por medio del un modelo de validación cruzada tal y como se observa a continuación. 
 
-##Pregunta 9. Modelo de validación cruzada
+## Pregunta 9. Modelo de validación cruzada
 
-```{r}
-ct<-trainControl(method = "cv",number=10,verboseIter=T)
-modeloCaret<-train(training1$clasification~.,data=training1,method="nb",trControl = ct)
-prediccionCaret<-predict(modeloCaret,newdata = test1)
-caret::confusionMatrix(prediccionCaret,test1$SalePrice)
+```{r,echo = FALSE}
+suppressWarnings({
+
+
+
+ct<-trainControl(method = "cv",training1[,c("GrLivArea","YearBuilt","BsmtUnfSF","TotalBsmtSF","GarageArea","YearRemodAdd", "SalePrice","LotArea")],number=10, verboseIter=T)
+modeloCaret<-train(clasification~ .,data=training1[,c("GrLivArea","YearBuilt","BsmtUnfSF","TotalBsmtSF","GarageArea","YearRemodAdd", "SalePrice","LotArea","clasification")],method="nb",trControl = ct)
+prediccionCaret<-predict(modeloCaret,newdata = test1[,c("GrLivArea","YearBuilt","BsmtUnfSF","TotalBsmtSF","GarageArea","YearRemodAdd", "SalePrice","LotArea")])
+
+cva<-caret::confusionMatrix(prediccionCaret,as.factor(test1$clasification))
+cva$table
+cva
+
+
+})
+
+#ct<-trainControl(method = "cv",number=10,verboseIter=T)
+#training1$clasification <- as.factor(training1$clasification)
+#modeloCaret<-train(clasification~.,data=training1,method="nb",trControl = ct)
+#prediccionCaret<-predict(modeloCaret,newdata = test1)
+#caret::confusionMatrix(prediccionCaret,test1$SalePrice)
 ```
 
-##Pregunta 10. Compare la eficiencia del algoritmo con el resultado obtenido con el árbol de decisión (el de clasificación) y el modelo de random forest que hizo en la hoja pasada. ¿Cuál es mejor para predecir? ¿Cuál se demoró más en procesar?
+## Pregunta 10. Compare la eficiencia del algoritmo con el resultado obtenido con el árbol de decisión (el de clasificación) y el modelo de random forest que hizo en la hoja pasada. ¿Cuál es mejor para predecir? ¿Cuál se demoró más en procesar?
+
+
+
